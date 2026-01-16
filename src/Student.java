@@ -5,7 +5,6 @@ public class Student extends User {
 
     public Student(String n, String pw, String e){
         super(n, pw, e);
-
     }
 
     public String getRole(){
