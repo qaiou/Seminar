@@ -1,7 +1,7 @@
 package model;
 
 public abstract class User {
-    private String id, role, name, password;
+    private String id, name, password;
 
     public User(String id, String name, String password) {
         this.id = id;
