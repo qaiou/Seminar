@@ -3,19 +3,18 @@ package dao;
 import java.sql.*;
 
 public class DBConnect {
+    static String url = "jdbc:mysql://localhost:3306/seminar";
+    static String username = "root";
+    static String password = "";
 
-    public DBConnect(){
-        String url = "db:mysql://localhost3306/dbconnect";
-        String username = "root";
-        String password = "";
+    public static Connection getConnect(){
+        
         try{
-            Class.forName("com.sql.cj.jdbc.Driver");
-            
-            Connection connection = DriverManager.getConnection(url, username, password);
-            Statement statement = connection.createStatement();
+            return DriverManager.getConnection(url, username, password);
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(SQLException e){
+            e.printStackTrace();
+            return null;
         }
     }
     

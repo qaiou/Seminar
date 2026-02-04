@@ -1,8 +1,12 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "Seminar.jar"
+        "lib\\mysql-connector-java-8.0.30-sources.jar",
+        "c:\\Users\\Qaisara\\OneDrive - mmu.edu.my\\1. CP6224 OOAD\\OOAD Lab & Final Assignment\\Lab Assignment\\Seminar\\Seminar.jar",
+        "lib/mysql-connector-java-8.0.30-sources.jar",
+        "lib/mysql-connector-j-9.6.0.jar"
     ]
 }

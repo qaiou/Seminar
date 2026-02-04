@@ -1,12 +1,17 @@
 package model;
 
-public abstract class User {
-    private String userId, password, email;
+public class User {
+    private String id, role, name, password;
 
-    public User(String n, String pw, String e){
-        userId= n;
-        password = pw;
-        email = e;
+    public User(String id, String role, String name, String password) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.password = password;
     }
-    public abstract String getRole();
+
+    public String getId() { return id; }
+    public String getRole() { return role; }
+    public String getUserId() { return name; }
+    public String getPassword() { return password; }
 }

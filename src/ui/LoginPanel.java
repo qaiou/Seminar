@@ -1,5 +1,7 @@
 package ui;
 import app.Main;
+import controller.AuthController;
+import model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,13 +9,15 @@ import java.awt.event.*;
 
 public class LoginPanel extends JPanel
 {
+    private AuthController authController = new AuthController();
+
     public LoginPanel(Main frame){
         setLayout(new GridLayout(4,2));
 
         String roleList[] = {"Student", "Evaluator", "Coordinator"};
-        JComboBox roleSelect = new JComboBox<String>(roleList);
+        JComboBox<String> roleSelect = new JComboBox<>(roleList);
         JTextField userID = new JTextField();
-        JTextField passw = new JTextField();
+        JPasswordField passw = new JPasswordField();
         JButton loginBtn = new JButton("Log in");
 
         add(new JLabel("Role", JLabel.CENTER));
@@ -28,7 +32,27 @@ public class LoginPanel extends JPanel
         loginBtn.addActionListener(
             new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    if ("Student".equals(roleSelect.getSelectedItem())){
+                    String role = roleSelect.getSelectedItem().toString();
+                    String uid = userID.getText();
+                    String pwd = new String(passw.getPassword());
+
+                    User user = authController.authenticate(uid, pwd, role);
+
+                    if (user != null) {
+                        if (role.equals("Student")) frame.switchPanel("STUDENT");
+                        else if (role.equals("Evaluator")) frame.switchPanel("EVALUATOR");
+                        else frame.switchPanel("COORDINATOR");
+                    } else {
+                        JOptionPane.showMessageDialog(loginBtn, "Invalid login!");;
+                    }
+                }
+            }
+        );
+    }
+}
+
+/*
+if ("Student".equals(roleSelect.getSelectedItem())){
 
                         //if() check student id dan
 
@@ -39,10 +63,7 @@ public class LoginPanel extends JPanel
                     }
                     else if ("Coordinator".equals(roleSelect.getSelectedItem())){
                         frame.switchPanel("COORDINATOR");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Invalid login!");
                     }
-                    
-                }
-            }
-        );
-    }
-}
+*/

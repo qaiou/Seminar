@@ -1,5 +1,8 @@
 package app;
-import ui.*;
+import ui.LoginPanel;
+import ui.StudentPanel;
+import ui.EvaluatorPanel;
+import ui.CoordinatorPanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -3,12 +3,8 @@ package model;
 public class Student extends User {
     private Submission submission;
 
-    public Student(String n, String pw, String e){
-        super(n, pw, e);
-    }
-
-    public String getRole(){
-        return "Student";
+    public Student(String id, String role, String name, String password) {
+        super(id, role, name, password);
     }
 
 }
