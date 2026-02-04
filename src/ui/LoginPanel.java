@@ -39,9 +39,12 @@ public class LoginPanel extends JPanel
                     User user = authController.authenticate(uid, pwd, role);
 
                     if (user != null) {
-                        if (role.equals("Student")) frame.switchPanel("STUDENT");
-                        else if (role.equals("Evaluator")) frame.switchPanel("EVALUATOR");
-                        else frame.switchPanel("COORDINATOR");
+                        if (role.equals("Student"))
+                            frame.switchPanel("STUDENT");
+                        else if (role.equals("Evaluator"))
+                            frame.switchPanel("EVALUATOR");
+                        else
+                            frame.switchPanel("COORDINATOR");
                     } else {
                         JOptionPane.showMessageDialog(loginBtn, "Invalid login!");;
                     }
@@ -51,19 +54,3 @@ public class LoginPanel extends JPanel
     }
 }
 
-/*
-if ("Student".equals(roleSelect.getSelectedItem())){
-
-                        //if() check student id dan
-
-                        frame.switchPanel("STUDENT");
-                    }
-                    else if ("Evaluator".equals(roleSelect.getSelectedItem())){
-                        frame.switchPanel("EVALUATOR");
-                    }
-                    else if ("Coordinator".equals(roleSelect.getSelectedItem())){
-                        frame.switchPanel("COORDINATOR");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Invalid login!");
-                    }
-*/

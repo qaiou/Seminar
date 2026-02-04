@@ -1,6 +1,7 @@
 package dao;
 
-import model.User;
+import model.Student;
+import model.*;
 import java.sql.*;
 
 public class UserDAO {
@@ -18,12 +19,26 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new User(
+                if (role == "Student"){
+                    return new Student(
                     rs.getString("id"),
-                    rs.getString("role"),
                     rs.getString("name"),
                     rs.getString("password")
-                );
+                    ); 
+                } else if (role == "Evaluator"){
+                    return new Evaluator(
+                    rs.getString("id"),
+                    rs.getString("name"),
+                    rs.getString("password")
+                    );
+                } else if (role == "Coordinator"){
+                    return new Coordinator(
+                    rs.getString("id"),
+                    rs.getString("name"),
+                    rs.getString("password")
+                    );
+                }
+                
             }
 
         } catch (SQLException e) {
