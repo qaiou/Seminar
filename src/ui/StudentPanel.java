@@ -43,10 +43,10 @@ public class StudentPanel extends JPanel
             }
         );
         
-        formPanel.add(new JLabel("ResearchTitle:"));
+        formPanel.add(new JLabel("ResearchTitle:", JLabel.CENTER));
         formPanel.add(titleField);
         formPanel.add(new JLabel());
-        formPanel.add(new JLabel("Abstract:"));
+        formPanel.add(new JLabel("Abstract:", JLabel.CENTER));
         formPanel.add(new JScrollPane(abstractArea));
         formPanel.add(new JLabel());
         formPanel.add(backBtn);

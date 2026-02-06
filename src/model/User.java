@@ -8,6 +8,10 @@ public abstract class User {
         this.name = name;
         this.password = password;
     }
+    public User(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public String getId() { return id; }
     public  abstract String getRole() ;
