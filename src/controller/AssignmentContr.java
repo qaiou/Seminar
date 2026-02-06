@@ -9,7 +9,11 @@ public class AssignmentContr {
     public AssignmentContr(SessionDAO dao) {
         this.sessionDAO = dao;
     }
-
+    public void createSession(int sessionId, String date, String venue, String type) {
+    Session newSession = new Session(sessionId, date, venue, type);
+    sessionDAO.saveSession(newSession);
+    }
+    
     public void assignPresenter(int sessionId, String presenterId) {
         Session session = sessionDAO.getSessionById(sessionId);
         if (session != null) {
