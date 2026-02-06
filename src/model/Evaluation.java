@@ -1,7 +1,6 @@
 package model;
 
 public class Evaluation {
-    private int evaluationId;
     private String studentId;
     private String evaluatorId;
     private int sessionId;

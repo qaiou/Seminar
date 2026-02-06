@@ -6,6 +6,7 @@ public class Session {
     private String venue;
     private String sessionType;
     private String status;
+    private String time;
 
     public Session() {}
 
@@ -14,6 +15,7 @@ public class Session {
         this.venue = venue;
         this.sessionType = sessionType;
         this.status = "Scheduled";
+        //this.time = time;
     }
 
     public Session(int sessionId, String sessionDate, String venue,
@@ -30,12 +32,14 @@ public class Session {
     public void setVenue(String venue){ this.venue = venue;}
     public void setStatus(String status){ this.status = status;}
     public void setSessionType(String sessionType){ this.sessionType = sessionType;}
+    public void setTime(String time){ this.time = time;}
 
     public int getSessionId(){ return sessionId;}
     public String getSessionDate(){ return sessionDate;}
     public String getVenue(){ return venue;}
     public String getStatus(){ return status;}
     public String getSessionType(){ return sessionType;}
+    public String getTimeType(){ return time;}
 
     
     

@@ -6,7 +6,6 @@ import dao.EvaluatorDAO;
 import dao.EvaluationDAO;
 import model.Assignment;
 import model.Evaluator;
-import model.Session;
 import model.Evaluation;
 
 import java.util.List;

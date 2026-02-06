@@ -11,7 +11,16 @@ public class Submission {
     private String status;
 
     
-    public Submission( int submissionId, String studentId, String title, String abstractText, String supervisorName, String presentationType, String filePath) {
+    public Submission( String studentId, String title, String abstractText, String supervisorName, String presentationType, String filePath) {
+        this.studentId = studentId;
+        this.title = title;
+        this.abstractText = abstractText;
+        this.supervisorName = supervisorName;
+        this.presentationType = presentationType;
+        this.filePath = filePath;
+    }
+
+    public Submission( int submissionId, String studentId, String title, String abstractText, String supervisorName, String presentationType, String filePath, String status) {
         this.submissionId = submissionId;
         this.studentId = studentId;
         this.title = title;
@@ -19,6 +28,7 @@ public class Submission {
         this.supervisorName = supervisorName;
         this.presentationType = presentationType;
         this.filePath = filePath;
+        this.status = status;
     }
 
     public void  setStudentId(String studentId) { this.studentId = studentId; }
@@ -28,6 +38,7 @@ public class Submission {
     public void setSupervisorName(String supervisorName) { this.supervisorName = supervisorName; }
     public void setPresentationType(String presentationType) { this.presentationType = presentationType; }
     public void setFilePath(String filePath) { this.filePath = filePath; }
+    public void setStatus(String status) { this.filePath = status; }
 
     public String getStudentId() { return studentId; }
     public int getSubmissionId() { return submissionId; }
@@ -36,5 +47,6 @@ public class Submission {
     public String getSupervisorName() { return supervisorName; }
     public String getPresentationType() { return presentationType; }
     public String getFilePath() { return filePath; }
+    public String getStatus() { return status; }
     
 }

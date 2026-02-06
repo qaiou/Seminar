@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EvaluationDAO {
-
+/* 
     public void saveEvaluation(Evaluation e) {
         String sql = """
-            INSERT INTO evaluations
-            (student_id, evaluator_id, session_id,
+            INSERT INTO evaluation
+
+            (studentID, evaluatorID, session_id,
              clarity, methodology, results, presentation, comments)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """;
@@ -35,11 +36,11 @@ public class EvaluationDAO {
             ex.printStackTrace();
         }
     }
-
+*/
     public boolean insertEvaluation(Evaluation e) {
         String sql = """
             INSERT INTO evaluation 
-            (assignment_id, problem_clarity, methodology, results, presentation, comments, total_score)
+            (assignmentID, problem_clarity, methodology, results, presentation, comments, total_score)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """;
 
@@ -63,7 +64,7 @@ public class EvaluationDAO {
 
     public List<Evaluation> getEvaluationsByEvaluator(int evaluatorId) {
         List<Evaluation> list = new ArrayList<>();
-        String sql = "SELECT * FROM evaluations WHERE evaluator_id=?";
+        String sql = "SELECT * FROM evaluation WHERE evaluatorID=?";
 
         try (Connection conn = DBConnect.getConnect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

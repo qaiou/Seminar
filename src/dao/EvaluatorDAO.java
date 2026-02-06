@@ -12,7 +12,7 @@ import model.Evaluator;
 public class EvaluatorDAO {
     public List<Evaluator> getAll() {
         List<Evaluator> list = new ArrayList<>();
-        String sql = "SELECT * FROM users WHERE role = 'evaluator' ORDER BY userID ";
+        String sql = "SELECT * FROM users WHERE role = 'Evaluator' ";
 
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -20,7 +20,7 @@ public class EvaluatorDAO {
 
             while (rs.next()) {
                 Evaluator s = new Evaluator(
-                        rs.getString("userID"),
+                        rs.getString("id"),
                         rs.getString("name")
                 );
                 list.add(s);

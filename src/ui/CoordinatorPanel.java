@@ -3,10 +3,11 @@ package ui;
 import controller.*;
 import model.*;
 
+import java.util.*;
+import java.util.List;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.List;
 
 public class CoordinatorPanel extends JPanel {
 
@@ -15,7 +16,7 @@ public class CoordinatorPanel extends JPanel {
     private ReportController reportController = new ReportController();
 
     private JTable sessionTable;
-    private JTable studentTable;
+    private JTable submissionTable;
     private JTable evaluatorTable;
 
     private JTextArea outputArea;
@@ -57,9 +58,9 @@ public class CoordinatorPanel extends JPanel {
 
         createBtn.addActionListener(e -> {
             sessionController.createSession(
-                    dateField.getText(),
-                    venueField.getText(),
-                    (String) typeCombo.getSelectedItem()
+                dateField.getText(),
+                venueField.getText(),
+                (String) typeCombo.getSelectedItem()
             );
             refreshSessions();
         });
@@ -72,8 +73,17 @@ public class CoordinatorPanel extends JPanel {
     // ---------------- ASSIGNMENT TAB ----------------
     private JPanel buildAssignmentPanel() {
         JPanel panel = new JPanel(new BorderLayout(10, 10));
+        
+        StudentContr sc = new StudentContr();
+        List<Submission> submissions = sc.getAllStudents();
 
-        studentTable = new JTable();
+        submissionTable = new JTable();
+        submissionTable.setModel(TableUtils.buildTableModel(
+            submissions,
+            new String[]{"submissionId", "title"},
+            new String[]{"ID", "Title"}
+        ));
+
         evaluatorTable = new JTable();
         sessionTable = new JTable();
 
@@ -84,7 +94,7 @@ public class CoordinatorPanel extends JPanel {
         JButton assignBtn = new JButton("Assign Selected");
 
         assignBtn.addActionListener(e -> {
-            int sRow = studentTable.getSelectedRow();
+            int sRow = submissionTable.getSelectedRow();
             int eRow = evaluatorTable.getSelectedRow();
             int sessRow = sessionTable.getSelectedRow();
 
@@ -93,8 +103,8 @@ public class CoordinatorPanel extends JPanel {
                 return;
             }
 
-            String studentId = (String) studentTable.getValueAt(sRow, 0);
-            String evaluatorId = (String) evaluatorTable.getValueAt(eRow, 0);
+            String studentId = submissionTable.getValueAt(sRow, 0).toString();
+            String evaluatorId = evaluatorTable.getValueAt(eRow, 0).toString();
             int sessionId = (int) sessionTable.getValueAt(sessRow, 0);
 
             assignmentController.assign(sessionId, studentId, evaluatorId);
@@ -102,7 +112,7 @@ public class CoordinatorPanel extends JPanel {
         });
 
         JPanel center = new JPanel(new GridLayout(1, 3));
-        center.add(new JScrollPane(studentTable));
+        center.add(new JScrollPane(submissionTable), BorderLayout.CENTER);
         center.add(new JScrollPane(evaluatorTable));
         center.add(new JScrollPane(sessionTable));
 
@@ -135,7 +145,7 @@ public class CoordinatorPanel extends JPanel {
 
     // ---------------- REFRESH METHODS ----------------
     private void refreshStudents() {
-        studentTable.setModel(TableUtils.buildTableModel(new StudentContr().getAllStudents()));
+        submissionTable.setModel(TableUtils.buildTableModel(new StudentContr().getAllStudents()));
     }
 
     private void refreshEvaluators() {

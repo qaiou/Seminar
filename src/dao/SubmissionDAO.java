@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Assignment;
+import model.Student;
 import model.Submission;
 
 public class SubmissionDAO {
@@ -23,7 +23,7 @@ public class SubmissionDAO {
 
             while (rs.next()) {
                 list.add(new Submission(
-                    rs.getInt("submissionID"),
+                    
                     rs.getString("studentID"),
                     rs.getString("title"),
                     rs.getString("abstract"),
@@ -48,7 +48,6 @@ public class SubmissionDAO {
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, e.getSubmissionId());
             ps.setString(2, e.getStudentId());
             ps.setString(3, e.getTitle());
             ps.setString(4, e.getAbstractText());
@@ -63,5 +62,31 @@ public class SubmissionDAO {
         return false;
     }
 
+    public List<Submission> getAll() {
+        List<Submission> list = new ArrayList<>();
+        String sql = "SELECT * FROM submission";
+
+        try (Connection con = DBConnect.getConnect();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Submission s = new Submission(
+                        rs.getInt("submissionID"),
+                        rs.getString("studentID"),
+                        rs.getString("title"),
+                        rs.getString("abstract"),
+                        rs.getString("supervisor"),
+                        rs.getString("type"),
+                        rs.getString("file_path"),
+                        rs.getString("status")
+                );
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 }

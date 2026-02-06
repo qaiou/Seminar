@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.StudentDAO;
 import dao.SubmissionDAO;
-import model.Evaluator;
 import model.Student;
 import model.Submission;
 
@@ -18,7 +17,11 @@ public class StudentContr {
         return submissionDAO.insertSubmission(submission);
     }
 
-    public List<Student> getAllStudents() {
+    public List<Submission> getAllStudents() {
+        return submissionDAO.getAll();
+    }
+
+    public List<Student> getAllS() {
         return studentDAO.getAll();
     }
 

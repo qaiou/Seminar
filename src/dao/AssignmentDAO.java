@@ -9,7 +9,7 @@ public class AssignmentDAO {
 
     public boolean insertAssignment(Assignment a) {
         String sql = """
-            INSERT INTO assignment (session_id, student_id, evaluator_id, status)
+            INSERT INTO assignment (sessionID, studentID, evaluatorID, status)
             VALUES (?, ?, ?, ?)
         """;
 
@@ -40,10 +40,10 @@ public class AssignmentDAO {
 
             while (rs.next()) {
                 Assignment a = new Assignment(
-                    rs.getInt("assignment_id"),
-                    rs.getInt("session_id"),
-                    rs.getString("student_id"),
-                    rs.getString("evaluator_id"),
+                    rs.getInt("assignmentID"),
+                    rs.getInt("sessionID"),
+                    rs.getString("studentID"),
+                    rs.getString("evaluatorID"),
                     rs.getString("status")
                 );
                 list.add(a);

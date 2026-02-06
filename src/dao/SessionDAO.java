@@ -41,7 +41,7 @@ public class SessionDAO {
 
             while (rs.next()) {
                 Session s = new Session(
-                        rs.getInt("session_id"),
+                        rs.getInt("sessionID"),
                         rs.getDate("session_date").toString(),
                         rs.getString("venue"),
                         rs.getString("session_type"),
@@ -84,7 +84,7 @@ public class SessionDAO {
         String sql = """
             UPDATE session 
             SET session_date=?, venue=?, session_type=?, status=?
-            WHERE session_id=?
+            WHERE sessionID=?
         """;
 
         try (Connection con = DBConnect.getConnect();
@@ -105,7 +105,7 @@ public class SessionDAO {
 
     // DELETE
     public boolean delete(int id) {
-        String sql = "DELETE FROM session WHERE session_id=?";
+        String sql = "DELETE FROM session WHERE sessionID=?";
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
