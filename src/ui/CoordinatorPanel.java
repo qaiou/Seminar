@@ -1,7 +1,6 @@
 package ui;
 
 import controller.*;
-import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +9,10 @@ public class CoordinatorPanel extends JPanel {
 
     private SessionController sessionController = new SessionController();
     private AssignmentContr assignmentController = new AssignmentContr();
-    private ReportController reportController = new ReportController();
 
     private JTable sessionTable;
     private JTable submissionTable;
     private JTable evaluatorTable;
-
-    private JTextArea outputArea;
 
     private StudentContr sc = new StudentContr();
     private EvaluatorContr ec = new EvaluatorContr();
