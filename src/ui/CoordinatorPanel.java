@@ -119,25 +119,40 @@ public class CoordinatorPanel extends JPanel {
 
     // ---------------- REPORT TAB ----------------
     private JPanel buildReportPanel() {
-        JPanel panel = new JPanel(new BorderLayout(10, 10));
+    JPanel panel = new JPanel(new BorderLayout(10,10));
 
-        JButton reportBtn = new JButton("Generate Report");
-        JButton awardBtn = new JButton("Compute Awards");
+    AwardController awardController = new AwardController();
+    ReportController reportController = new ReportController();
 
-        outputArea = new JTextArea();
-        outputArea.setEditable(false);
+    JTextArea outputArea = new JTextArea();
+    outputArea.setEditable(false);
 
-        reportBtn.addActionListener(e -> outputArea.setText(reportController.generateReport()));
-        awardBtn.addActionListener(e -> outputArea.setText(reportController.computeAwards()));
+    JButton awardBtn = new JButton("Compute Awards");
+    JButton reportBtn = new JButton("Generate Summary");
+    JButton exportBtn = new JButton("Export CSV");
 
-        JPanel top = new JPanel();
-        top.add(reportBtn);
-        top.add(awardBtn);
+    awardBtn.addActionListener(e ->
+        outputArea.setText(awardController.computeAwards())
+    );
 
-        panel.add(top, BorderLayout.NORTH);
-        panel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
-        return panel;
-    }
+    reportBtn.addActionListener(e ->
+        outputArea.setText(reportController.generateSummaryReport())
+    );
+
+    exportBtn.addActionListener(e ->
+        outputArea.setText(reportController.exportCSV())
+    );
+
+    JPanel top = new JPanel();
+    top.add(awardBtn);
+    top.add(reportBtn);
+    top.add(exportBtn);
+
+    panel.add(top, BorderLayout.NORTH);
+    panel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+    return panel;
+}
+
 
     // ---------------- REFRESH METHODS ----------------
     private void refreshSubmissions() {

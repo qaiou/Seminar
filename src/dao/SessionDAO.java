@@ -116,4 +116,18 @@ public class SessionDAO {
         }
         return false;
     }
+
+    public int count() {
+        String sql = "SELECT COUNT(*) FROM session";
+        try (Connection con = DBConnect.getConnect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)) {
+
+            if (rs.next()) return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

@@ -89,5 +89,48 @@ public class EvaluationDAO {
         return list;
     }
 
+    public double getOverallAverageScore() {
+        String sql = "SELECT AVG(total_score) FROM evaluation";
+        try (Connection con = DBConnect.getConnect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)) {
+
+            if (rs.next()) return rs.getDouble(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
+
+    public List<EvaluationResult> getAverageScoresPerSubmission() {
+        List<EvaluationResult> list = new ArrayList<>();
+
+        String sql = """
+            SELECT s.submissionID, s.title, s.type,
+                AVG(e.total_score) AS avg_score
+            FROM evaluation e
+            JOIN assignment a ON e.assignmentID = a.assignID
+            JOIN submission s ON a.submissionID = s.submissionID
+            GROUP BY s.submissionID, s.title, s.type
+        """;
+
+        try (Connection con = DBConnect.getConnect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                list.add(new EvaluationResult(
+                        rs.getInt("submissionID"),
+                        rs.getString("title"),
+                        rs.getString("type"),
+                        rs.getInt("avg_score")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     
 }

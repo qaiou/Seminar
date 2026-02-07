@@ -1,9 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,5 +90,19 @@ public class SubmissionDAO {
         }
         return list;
     }
+
+    public int count() {
+        String sql = "SELECT COUNT(*) FROM submission";
+        try (Connection con = DBConnect.getConnect();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)) {
+
+            if (rs.next()) return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
 }
