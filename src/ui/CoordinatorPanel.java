@@ -79,7 +79,7 @@ public class CoordinatorPanel extends JPanel {
         evaluatorTable = new JTable();
         sessionTable = new JTable();
 
-        refreshStudents();
+        refreshSubmissions();
         refreshEvaluators();
         refreshSessions();
 
@@ -90,16 +90,20 @@ public class CoordinatorPanel extends JPanel {
             int eRow = evaluatorTable.getSelectedRow();
             int sessRow = sessionTable.getSelectedRow();
 
+            refreshSubmissions();
+            refreshEvaluators();
+            refreshSessions();
+            
             if (sRow == -1 || eRow == -1 || sessRow == -1) {
                 JOptionPane.showMessageDialog(this, "Select a student, evaluator, and session.");
                 return;
             }
 
-            String studentId = submissionTable.getValueAt(sRow, 0).toString();
+            int submissionId = (int) submissionTable.getValueAt(sRow, 0);
             String evaluatorId = evaluatorTable.getValueAt(eRow, 0).toString();
             int sessionId = (int) sessionTable.getValueAt(sessRow, 0);
 
-            assignmentController.assign(sessionId, studentId, evaluatorId);
+            assignmentController.assign(sessionId, submissionId, evaluatorId);
             JOptionPane.showMessageDialog(this, "Assignment created.");
         });
 
@@ -136,7 +140,7 @@ public class CoordinatorPanel extends JPanel {
     }
 
     // ---------------- REFRESH METHODS ----------------
-    private void refreshStudents() {
+    private void refreshSubmissions() {
         submissionTable.setModel(TableUtils.buildTableModel(
             sc.getAllStudents(),
             new String[]{"submissionId", "title"},

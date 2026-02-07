@@ -57,7 +57,7 @@ public class SessionDAO {
 
     // READ BY ID
     public Session getById(int id) {
-        String sql = "SELECT * FROM session WHERE session_id = ?";
+        String sql = "SELECT * FROM session WHERE sessionID = ?";
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -66,7 +66,7 @@ public class SessionDAO {
 
             if (rs.next()) {
                 return new Session(
-                        rs.getInt("session_id"),
+                        rs.getInt("sessionID"),
                         rs.getDate("session_date").toString(),
                         rs.getString("venue"),
                         rs.getString("session_type"),

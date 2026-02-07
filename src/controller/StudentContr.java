@@ -14,7 +14,7 @@ public class StudentContr {
 
     // Submit research
     public boolean submitResearch(Submission submission) {
-        return submissionDAO.insertSubmission(submission);
+        return submissionDAO.saveOrUpdate(submission);
     }
 
     public List<Submission> getAllStudents() {

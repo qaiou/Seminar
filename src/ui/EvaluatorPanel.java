@@ -70,8 +70,8 @@ public class EvaluatorPanel extends JPanel {
 
         assignmentTable.setModel(TableUtils.buildTableModel(
                 assignments,
-                new String[]{"assignmentId", "submissionId", "sessionId", "status"},
-                new String[]{"Assignment ID", "Submission ID", "Session ID", "Status"}
+                new String[]{"assignmentId", "sessionId", "submissionId", "status"},
+                new String[]{"Assignment ID", "Session ID", "Submission ID", "Status"}
         ));
     }
 

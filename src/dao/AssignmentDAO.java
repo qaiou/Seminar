@@ -9,7 +9,7 @@ public class AssignmentDAO {
 
     public boolean insertAssignment(Assignment a) {
         String sql = """
-            INSERT INTO assignment (sessionID, studentID, evaluatorID, status)
+            INSERT INTO assignment (sessionID, submissionID, evaluatorID, status)
             VALUES (?, ?, ?, ?)
         """;
 
@@ -17,7 +17,7 @@ public class AssignmentDAO {
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, a.getSessionId());
-            ps.setString(2, a.getStudentId());
+            ps.setInt(2, a.getSubmissionId());
             ps.setString(3, a.getEvaluatorId());
             ps.setString(4, a.getStatus());
 
@@ -39,13 +39,12 @@ public class AssignmentDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Assignment a = new Assignment(
-                    rs.getInt("assignmentID"),
-                    rs.getInt("sessionID"),
-                    rs.getString("submissionID"),
-                    rs.getString("evaluatorID"),
-                    rs.getString("status")
-                );
+                Assignment a = new Assignment();
+                a.setAssignmentId(rs.getInt("assignID"));
+                a.setSessionId(rs.getInt("sessionID"));
+                a.setSubmissionId(rs.getInt("submissionID"));
+                a.setEvaluatorId(rs.getString("evaluatorID"));
+                a.setStatus(rs.getString("status"));
                 list.add(a);
             }
         } catch (SQLException e) {

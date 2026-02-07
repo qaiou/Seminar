@@ -1,5 +1,4 @@
 package model;
-import java.util.*;
 
 public class Evaluator extends User{
     private String role = "Evaluator";

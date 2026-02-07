@@ -1,8 +1,6 @@
 package dao;
 
-import model.Evaluation;
-import model.Evaluator;
-import model.Session;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -74,9 +72,9 @@ public class EvaluationDAO {
 
             while (rs.next()) {
                 list.add(new Evaluation(
-                    rs.getString("student_id"),
-                    rs.getString("evaluator_id"),
-                    rs.getInt("session_id"),
+                    rs.getString("studentID"),
+                    rs.getString("evaluatorID"),
+                    rs.getInt("sessionID"),
                     rs.getInt("clarity"),
                     rs.getInt("methodology"),
                     rs.getInt("results"),
