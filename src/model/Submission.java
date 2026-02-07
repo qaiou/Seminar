@@ -38,7 +38,7 @@ public class Submission {
     public void setSupervisorName(String supervisorName) { this.supervisorName = supervisorName; }
     public void setPresentationType(String presentationType) { this.presentationType = presentationType; }
     public void setFilePath(String filePath) { this.filePath = filePath; }
-    public void setStatus(String status) { this.filePath = status; }
+    public void setStatus(String status) { this.status = status; }
 
     public String getStudentId() { return studentId; }
     public int getSubmissionId() { return submissionId; }

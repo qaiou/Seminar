@@ -42,7 +42,7 @@ public class LoginPanel extends JPanel
                         if (role.equals("Student"))
                             frame.switchPanel("STUDENT");
                         else if (role.equals("Evaluator"))
-                            frame.switchPanel("EVALUATOR");
+                            frame.showEvaluatorPanel(uid);
                         else
                             frame.switchPanel("COORDINATOR");
                     } else {

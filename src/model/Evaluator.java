@@ -2,7 +2,7 @@ package model;
 import java.util.*;
 
 public class Evaluator extends User{
-    private String role = "Student";
+    private String role = "Evaluator";
 
     public Evaluator(String id, String name, String password) {
         super(id, name, password);

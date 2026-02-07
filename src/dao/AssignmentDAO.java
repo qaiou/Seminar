@@ -30,7 +30,7 @@ public class AssignmentDAO {
 
     public List<Assignment> getByEvaluator(String evaluatorId) {
         List<Assignment> list = new ArrayList<>();
-        String sql = "SELECT * FROM assignment WHERE evaluator_id = ?";
+        String sql = "SELECT * FROM assignment WHERE evaluatorID = ?";
 
         try (Connection con = DBConnect.getConnect();
             PreparedStatement ps = con.prepareStatement(sql)) {
@@ -42,7 +42,7 @@ public class AssignmentDAO {
                 Assignment a = new Assignment(
                     rs.getInt("assignmentID"),
                     rs.getInt("sessionID"),
-                    rs.getString("studentID"),
+                    rs.getString("submissionID"),
                     rs.getString("evaluatorID"),
                     rs.getString("status")
                 );

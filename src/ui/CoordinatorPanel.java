@@ -3,9 +3,6 @@ package ui;
 import controller.*;
 import model.*;
 
-import java.util.*;
-import java.util.List;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,6 +17,10 @@ public class CoordinatorPanel extends JPanel {
     private JTable evaluatorTable;
 
     private JTextArea outputArea;
+
+    private StudentContr sc = new StudentContr();
+    private EvaluatorContr ec = new EvaluatorContr();
+    private SessionController ssc = new SessionController();
 
     public CoordinatorPanel() {
         setLayout(new BorderLayout(10, 10));
@@ -74,16 +75,7 @@ public class CoordinatorPanel extends JPanel {
     private JPanel buildAssignmentPanel() {
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         
-        StudentContr sc = new StudentContr();
-        List<Submission> submissions = sc.getAllStudents();
-
         submissionTable = new JTable();
-        submissionTable.setModel(TableUtils.buildTableModel(
-            submissions,
-            new String[]{"submissionId", "title"},
-            new String[]{"ID", "Title"}
-        ));
-
         evaluatorTable = new JTable();
         sessionTable = new JTable();
 
@@ -145,14 +137,26 @@ public class CoordinatorPanel extends JPanel {
 
     // ---------------- REFRESH METHODS ----------------
     private void refreshStudents() {
-        submissionTable.setModel(TableUtils.buildTableModel(new StudentContr().getAllStudents()));
+        submissionTable.setModel(TableUtils.buildTableModel(
+            sc.getAllStudents(),
+            new String[]{"submissionId", "title"},
+            new String[]{"Submission ID", "Title"}
+        ));
     }
 
     private void refreshEvaluators() {
-        evaluatorTable.setModel(TableUtils.buildTableModel(new EvaluatorContr().getAllEvaluators()));
+        evaluatorTable.setModel(TableUtils.buildTableModel(
+             ec.getAllEvaluators(),
+            new String[]{"id", "name"},
+            new String[]{"Evaluator ID", "Name"}
+        ));
     }
 
     private void refreshSessions() {
-        sessionTable.setModel(TableUtils.buildTableModel(sessionController.getAllSessions()));
+        sessionTable.setModel(TableUtils.buildTableModel(
+             ssc.getAllSessions(),
+            new String[]{"sessionId", "sessionDate", "venue", "sessionType", "status"},
+            new String[]{"Session ID", "Date", "Venue", "Type", "Status"}
+        ));
     }
 }

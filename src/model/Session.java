@@ -27,8 +27,8 @@ public class Session {
         this.status = status;
     }
 
-    public void setSessionId(String sessionDate){ this.sessionDate = sessionDate;}
-    public void setSessionDate(int sessionId){ this.sessionId = sessionId;}
+    public void setSessionDate(String sessionDate){ this.sessionDate = sessionDate;}
+    public void setSessionId(int sessionId){ this.sessionId = sessionId;}
     public void setVenue(String venue){ this.venue = venue;}
     public void setStatus(String status){ this.status = status;}
     public void setSessionType(String sessionType){ this.sessionType = sessionType;}
@@ -39,7 +39,7 @@ public class Session {
     public String getVenue(){ return venue;}
     public String getStatus(){ return status;}
     public String getSessionType(){ return sessionType;}
-    public String getTimeType(){ return time;}
+    public String getTime(){ return time;}
 
     
     

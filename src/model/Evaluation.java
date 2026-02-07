@@ -12,6 +12,8 @@ public class Evaluation {
     private int presentation;
     private String comments;
 
+    public Evaluation(){}
+
     public Evaluation(String studentId, String evaluatorId, int sessionId,
                       int problemClarity, int methodology, int results,
                       int presentation, String comments) {
@@ -27,6 +29,28 @@ public class Evaluation {
 
     public int getTotalScore() {
         return problemClarity + methodology + results + presentation;
+    }
+
+    public void setStudentId(String studentId){
+        this.studentId = studentId;
+    }
+    public void setAssignmentId(int assignmentId){
+        this.assignmentId = assignmentId;
+    }
+    public void setProblemClarity(int problemClarity){
+        this.problemClarity = problemClarity;
+    }
+    public void setMethodology(int methodology){
+        this.methodology = methodology;
+    }
+    public void setResults(int results){
+        this.results = results;
+    }
+    public void setPresentation(int presentation){
+        this.presentation = presentation;
+    }
+    public void setComments(String comments){
+        this.comments = comments;
     }
 
     public String getStudentId() { return studentId; }

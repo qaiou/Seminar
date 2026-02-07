@@ -24,7 +24,7 @@ public class Main extends JFrame{
         //panels
         mainPanel.add(new LoginPanel(this), "LOGIN");
         mainPanel.add(new StudentPanel(this), "STUDENT");
-        mainPanel.add(new EvaluatorPanel(), "EVALUATOR");
+        //mainPanel.add(new EvaluatorPanel(), "EVALUATOR");
         mainPanel.add(new CoordinatorPanel(), "COORDINATOR");
         
         add(mainPanel);
@@ -33,6 +33,10 @@ public class Main extends JFrame{
 
     public void switchPanel(String panelName){
         cardLayout.show(mainPanel, panelName);
+    }
+    public void showEvaluatorPanel(String evaluatorId) {
+        mainPanel.add(new EvaluatorPanel(evaluatorId), "EVALUATOR");
+        cardLayout.show(mainPanel, "EVALUATOR");
     }
 
     public static void main(String[] args) {
