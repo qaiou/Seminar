@@ -15,4 +15,8 @@ public class SubmissionController {
     public Submission getMySubmission(String studentId) {
         return dao.getByStudent(studentId);
     }
+
+    public java.util.List<Submission> getAllSubmissions() {
+        return dao.getAll();
+    }
 }

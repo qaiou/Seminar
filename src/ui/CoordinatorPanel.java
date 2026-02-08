@@ -1,14 +1,18 @@
 package ui;
 
 import controller.*;
+import dao.SubmissionDAO;
+import model.Submission;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class CoordinatorPanel extends JPanel {
 
     private SessionController sessionController = new SessionController();
     private AssignmentContr assignmentController = new AssignmentContr();
+    private SubmissionController submissionController = new SubmissionController();
 
     private JTable sessionTable;
     private JTable submissionTable;
@@ -152,10 +156,13 @@ public class CoordinatorPanel extends JPanel {
 
     // ---------------- REFRESH METHODS ----------------
     private void refreshSubmissions() {
+        SubmissionDAO dao = new SubmissionDAO();
+        List<Submission> submissions = dao.getAll();
+        
         submissionTable.setModel(TableUtils.buildTableModel(
-            sc.getAllStudents(),
-            new String[]{"submissionId", "title"},
-            new String[]{"Submission ID", "Title"}
+            submissions,
+            new String[]{"submissionID", "studentID", "title", "presentationType", "status"},
+            new String[]{"Submission ID", "Student ID", "Title", "Type", "Status"}
         ));
     }
 

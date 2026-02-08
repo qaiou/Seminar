@@ -10,15 +10,9 @@ import model.*;
 public class SubmissionDAO {
     public boolean saveOrUpdate(Submission s) {
         String sql = """
-            INSERT INTO submission
-            (studentID, title, abstract, supervisor, type, file_path)
-            VALUES (?, ?, ?, ?, ?, ?)
-            ON DUPLICATE KEY UPDATE
-              title=VALUES(title),
-              abstract=VALUES(abstract),
-              supervisor=VALUES(supervisor),
-              type=VALUES(type),
-              file_path=VALUES(file_path)
+            INSERT OR REPLACE INTO submission
+            (studentID, title, abstract, supervisor, type, file_path, status)
+            VALUES (?, ?, ?, ?, ?, ?, 'Submitted')
         """;
 
         try (Connection con = DBConnect.getConnect();
@@ -30,7 +24,7 @@ public class SubmissionDAO {
             ps.setString(4, s.getSupervisorName());
             ps.setString(5, s.getPresentationType());
             ps.setString(6, s.getFilePath());
-            ps.executeUpdate();
+
             return ps.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -53,7 +47,7 @@ public class SubmissionDAO {
                         rs.getString("title"),
                         rs.getString("abstract"),
                         rs.getString("supervisor"),
-                        rs.getString("ype"),
+                        rs.getString("type"),
                         rs.getString("file_path"),
                         rs.getString("status")
                 );
