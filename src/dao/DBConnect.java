@@ -3,19 +3,25 @@ package dao;
 import java.sql.*;
 
 public class DBConnect {
-    static String url = "jdbc:mysql://localhost:3306/seminar";
-    static String username = "root";
-    static String password = "";
+    static String url = "jdbc:sqlite:seminar.db";
 
-    public static Connection getConnect(){
-        
-        try{
-            return DriverManager.getConnection(url, username, password);
-        }
-        catch(SQLException e){
+    public static Connection getConnect() {
+        try {
+            // Load SQLite driver
+            Class.forName("org.sqlite.JDBC");
+            Connection c = DriverManager.getConnection(url);
+            System.out.println("DB connected");
+            return c;
+        } catch (ClassNotFoundException e) {
+            System.err.println("SQLite JDBC driver not found:");
+            e.printStackTrace();
+            return null;
+        } catch (SQLException e) {
+            System.err.println("DB connection failed:");
             e.printStackTrace();
             return null;
         }
     }
+
     
 }

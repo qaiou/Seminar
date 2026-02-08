@@ -17,7 +17,8 @@ public class SessionDAO {
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setDate(1, Date.valueOf(s.getSessionDate()));
+            // store date as ISO string (SQLite stores dates as text)
+            ps.setString(1, s.getSessionDate());
             ps.setString(2, s.getVenue());
             ps.setString(3, s.getSessionType());
             ps.setString(4, s.getStatus());
@@ -41,11 +42,11 @@ public class SessionDAO {
 
             while (rs.next()) {
                 Session s = new Session(
-                        rs.getInt("sessionID"),
-                        rs.getDate("session_date").toString(),
-                        rs.getString("venue"),
-                        rs.getString("session_type"),
-                        rs.getString("status")
+                    rs.getInt("sessionID"),
+                    rs.getString("session_date"),
+                    rs.getString("venue"),
+                    rs.getString("session_type"),
+                    rs.getString("status")
                 );
                 list.add(s);
             }
@@ -66,11 +67,11 @@ public class SessionDAO {
 
             if (rs.next()) {
                 return new Session(
-                        rs.getInt("sessionID"),
-                        rs.getDate("session_date").toString(),
-                        rs.getString("venue"),
-                        rs.getString("session_type"),
-                        rs.getString("status")
+                    rs.getInt("sessionID"),
+                    rs.getString("session_date"),
+                    rs.getString("venue"),
+                    rs.getString("session_type"),
+                    rs.getString("status")
                 );
             }
         } catch (SQLException e) {
@@ -90,7 +91,8 @@ public class SessionDAO {
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setDate(1, Date.valueOf(s.getSessionDate()));
+            // store date as ISO string
+            ps.setString(1, s.getSessionDate());
             ps.setString(2, s.getVenue());
             ps.setString(3, s.getSessionType());
             ps.setString(4, s.getStatus());

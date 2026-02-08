@@ -39,7 +39,7 @@ public class SubmissionDAO {
     }
 
     public Submission getByStudent(String studentId) {
-        String sql = "SELECT * FROM submission WHERE student_id=?";
+        String sql = "SELECT * FROM submission WHERE studentID=?";
         try (Connection con = DBConnect.getConnect();
              PreparedStatement ps = con.prepareStatement(sql)) {
 

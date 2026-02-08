@@ -25,10 +25,13 @@ public class Main extends JFrame{
         mainPanel.add(new LoginPanel(this), "LOGIN");
         //mainPanel.add(new StudentPanel(this), "STUDENT");
         //mainPanel.add(new EvaluatorPanel(), "EVALUATOR");
+        System.out.println("Adding CoordinatorPanel");
         mainPanel.add(new CoordinatorPanel(), "COORDINATOR");
         
         add(mainPanel);
+        System.out.println("Adding LoginPanel");
         cardLayout.show(mainPanel, "LOGIN");
+        
     }
 
     public void switchPanel(String panelName){
@@ -45,6 +48,7 @@ public class Main extends JFrame{
     }
 
     public static void main(String[] args) {
+        System.out.println("HELOOOOOOOOOOOOO");
         SwingUtilities.invokeLater(()-> new Main().setVisible(true));
     }
 }
