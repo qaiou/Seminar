@@ -161,7 +161,7 @@ public class CoordinatorPanel extends JPanel {
         
         submissionTable.setModel(TableUtils.buildTableModel(
             submissions,
-            new String[]{"submissionID", "studentID", "title", "presentationType", "status"},
+            new String[]{"submissionId", "studentId", "title", "presentationType", "status"},
             new String[]{"Submission ID", "Student ID", "Title", "Type", "Status"}
         ));
     }
